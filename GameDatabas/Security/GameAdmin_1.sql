@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [GameAdmin]
+    WITH PASSWORD = N'xo|ulc?UneEqsE3ovno3mj|ymsFT7_&#$!~<bjvqdneTEmql', SID = 0x7A2CE6EB06551F498E36AE67A18C6F31, DEFAULT_DATABASE = [Game], DEFAULT_LANGUAGE = [us_english], CHECK_POLICY = OFF;
+
