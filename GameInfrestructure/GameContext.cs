@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GameInfrestructure
 {
-    public class GameContext
+    public class GameContext: DbContext
     {
         public DbSet<Ability> Abilities { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
