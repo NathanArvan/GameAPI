@@ -4,10 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace GameAPI.Controllers
 {
     [ApiController]
-    [Route("character")]
-    public class CharacterController : ControllerBase
+    public class CharacterController : Controller
     {
-        [HttpGet]
+        [HttpGet("characters")]
         [Produces("application/json")]
         public Task<List<Character>> GetCharacters()
         {

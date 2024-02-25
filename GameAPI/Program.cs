@@ -2,14 +2,17 @@ using GameInfrestructure;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 
+builder.Services.AddHttpLogging(o => { });
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//builder.Services.AddDbContext<GameContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("GameContext")));
-builder.Services.AddDbContext<GameContext>(options => options.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=Game;User Id=GameAdmin;Password=myPassword;"));
+builder.Services.AddDbContext<GameContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("GameContext")));
 var app = builder.Build();
 
+app.UseHttpLogging();
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
@@ -17,6 +20,6 @@ app.UseSwaggerUI(options =>
     options.RoutePrefix = string.Empty;
 });
 
-app.MapGet("/", () => "Hello World!");
+app.MapControllers();
 
 app.Run();
