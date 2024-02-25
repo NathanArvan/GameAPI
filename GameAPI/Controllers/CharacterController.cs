@@ -6,12 +6,18 @@ namespace GameAPI.Controllers
     [ApiController]
     public class CharacterController : Controller
     {
+        private CharacterService characterService;
+
+        public CharacterController(CharacterService characterService)
+        {
+            this.characterService = characterService;
+        }
+
         [HttpGet("characters")]
         [Produces("application/json")]
         public Task<List<Character>> GetCharacters()
         {
-            return Task.FromResult(new List<Character>());
-            // return new List<Character>() { new Character() { Name = "Test" } };
+            return this.characterService.GetCharacters();
         }
 
     }

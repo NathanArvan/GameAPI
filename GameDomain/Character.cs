@@ -1,9 +1,13 @@
-﻿namespace GameDomain
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace GameDomain
 {
     public class Character
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CharacterId { get; set; }
         public string Name { get; set; } = string.Empty;
+        [NotMapped]
         public string Image { get; set; } = string.Empty;
         public decimal CarryingCapacity { get; set; }
         public List<Item> EquipedItems { get; set; } = new List<Item>();
@@ -16,7 +20,7 @@
         public int MartialVision { get; set; }
         public int ArcaneVision { get; set; }
         public int Actions { get; set; }
-        public decimal Accuracy { get; set; }
-        public decimal Evasion { get; set; }
+        public int Accuracy { get; set; }
+        public int Evasion { get; set; }
     }
 }

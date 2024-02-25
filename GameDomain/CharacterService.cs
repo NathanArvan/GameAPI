@@ -2,9 +2,16 @@
 {
     public class CharacterService
     {
+        private ICharacterRepository _repository;
+
+        public CharacterService(ICharacterRepository repository)
+        {
+            _repository = repository;
+        }
+
         public Task<List<Character>> GetCharacters()
         {
-            return Task.FromResult(new List<Character>());
+            return _repository.Query();
         }
     }
 }
