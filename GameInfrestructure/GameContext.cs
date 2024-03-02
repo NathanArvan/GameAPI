@@ -1,4 +1,5 @@
 ﻿using GameDomain;
+using GameDomain.Maps;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameInfrestructure
