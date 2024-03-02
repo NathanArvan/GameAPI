@@ -5,6 +5,8 @@
     [Effect]      INT         NULL,
     [Range]       INT         NULL,
     [Duration]    INT         NULL,
-    [Requirments] INT         NULL
+    [Requirments] INT         NULL,
+    [AbilityId]   INT         NOT NULL,
+    PRIMARY KEY CLUSTERED ([AbilityId] ASC)
 );
 

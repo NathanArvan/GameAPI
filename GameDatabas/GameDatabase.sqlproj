@@ -65,7 +65,6 @@
   <ItemGroup>
     <Build Include="dbo\Tables\Abilities.sql" />
     <Build Include="dbo\Tables\Campaigns.sql" />
-    <Build Include="dbo\Tables\Characters.sql" />
     <Build Include="dbo\Tables\Classes.sql" />
     <Build Include="dbo\Tables\Items.sql" />
     <Build Include="dbo\Tables\Maps.sql" />
@@ -74,8 +73,8 @@
     <Build Include="dbo\Tables\ClassAbilities.sql" />
     <Build Include="dbo\Tables\ItemAbilities.sql" />
     <Build Include="dbo\Tables\StoredItems.sql" />
+    <Build Include="dbo\Tables\Character.sql" />
     <Build Include="Security\GameAdmin.sql" />
-    <Build Include="Security\GameAdmin_1.sql" />
     <Build Include="Security\RoleMemberships.sql" />
   </ItemGroup>
 </Project>
