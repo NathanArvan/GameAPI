@@ -1,5 +1,6 @@
 using GameDomain;
 using GameDomain.Maps;
+using GameDomain.Tokens;
 using GameInfrestructure;
 using GameInfrestructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,8 @@ builder.Services.AddScoped<CharacterService>();
 builder.Services.AddScoped<ICharacterRepository, CharacterRepository>();
 builder.Services.AddScoped<MapService>();
 builder.Services.AddScoped<IMapRepsitory, MapRepository>();
+builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<ITokenRepository, TokenRepository>();
 builder.Services.AddDbContext<GameContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("GameContext")));
 var app = builder.Build();
 

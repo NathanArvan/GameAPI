@@ -1,4 +1,6 @@
-﻿namespace GameDomain.Maps
+﻿using GameDomain.Tokens;
+
+namespace GameDomain.Maps
 {
     public class Map
     {
