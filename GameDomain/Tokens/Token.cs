@@ -5,7 +5,7 @@
         public int? TokenId { get; set; }
         public int? MapId { get; set; }
         public int? CharacterId { get; set; }
-        public int? XPosition { get; set; }
-        public int? YPosition { get; set; }
+        public int? xPosition { get; set; }
+        public int? yPosition { get; set; }
     }
 }
