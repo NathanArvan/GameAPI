@@ -40,6 +40,7 @@ app.UseSwaggerUI(options =>
 });
 
 app.MapControllers();
+app.UseCors(MyAllowSpecificOrigins);
 
 app.Run();
 
