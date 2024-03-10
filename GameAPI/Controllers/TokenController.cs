@@ -17,9 +17,11 @@ namespace GameAPI.Controllers
         {
             return await _tokenService.GetTokens();
         }
+        
 
         [HttpPost("tokens")]
-        public async Task<Token> CreateToken(Token token)
+        //[Consumes("multipart/form-data")]
+        public async Task<Token> CreateToken([FromForm] TokenDTO token)
         {
             return await _tokenService.CreateToken(token);
         }

@@ -15,6 +15,7 @@ namespace GameInfrestructure
         public DbSet<Item> Items { get; set; }
         public DbSet<Map> Maps { get; set; }
         public DbSet<Token> Tokens { get; set; }
+        public DbSet<TokenImage> TokenImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -23,5 +23,12 @@ namespace GameInfrestructure.Repositories
             await _gameContext.SaveChangesAsync();
             return token;
         }
+
+        public async Task<TokenImage> InsertTokenImage(TokenImage image)
+        {
+            _gameContext.TokenImages.Add(image);
+            await _gameContext.SaveChangesAsync();
+            return image;
+        }
     }
 }
