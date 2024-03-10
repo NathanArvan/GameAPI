@@ -28,5 +28,10 @@
 
             return result;
         }
+
+        public async Task<List<Token>> GetTokensWithImages()
+        {
+            return await _tokenRepository.GetTokensWithImages();
+        }
     }
 }

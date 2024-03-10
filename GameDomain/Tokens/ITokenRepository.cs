@@ -7,5 +7,7 @@
         public Task<Token> InsertToken(Token token);
 
         public Task<TokenImage> InsertTokenImage(TokenImage image);
+
+        public Task<List<Token>> GetTokensWithImages();
     }
 }
