@@ -27,16 +27,16 @@ namespace GameAPI.Controllers
             var items = new List<object>();
             foreach (var token in result)
             {
-                FileContentResult? file;
+                FileContentResult? image;
                 if(token.Image != null)
                 {
-                    file = await _fileManager.GetFileAsync(this, token.Image.Image, "test.jpeg", "image/jpeg");
+                    image = await _fileManager.GetFileAsync(this, token.Image.Image, "test.jpeg", "image/jpeg");
                 } else
                 {
-                    file = null;
+                    image = null;
                 }
                 
-                var item = new { file, TokenId = token.TokenId, MapId = token.MapId, xPosiotion = token.xPosition, yPosition = token.yPosition };
+                var item = new { image, TokenId = token.TokenId, MapId = token.MapId, xPosition = token.xPosition, yPosition = token.yPosition };
                 items.Add(item);
             }
             return items;
