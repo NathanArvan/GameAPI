@@ -36,7 +36,7 @@ namespace GameAPI.Controllers
                     image = null;
                 }
                 
-                var item = new { image, TokenId = token.TokenId, MapId = token.MapId, xPosition = token.xPosition, yPosition = token.yPosition };
+                var item = new { image, token.TokenId, token.MapId, token.xPosition, token.yPosition };
                 items.Add(item);
             }
             return items;
@@ -46,6 +46,13 @@ namespace GameAPI.Controllers
         public async Task<Token> CreateToken([FromForm] TokenDTO token)
         {
             return await _tokenService.CreateToken(token);
+        }
+
+
+        [HttpPut("tokens")]
+        public async Task<Token> UpdateToken([FromBody] Token token)
+        {
+            return await _tokenService.UpdateToken(token);
         }
     }
 }

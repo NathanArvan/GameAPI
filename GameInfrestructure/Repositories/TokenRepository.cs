@@ -1,5 +1,6 @@
 ﻿using GameDomain.Tokens;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace GameInfrestructure.Repositories
 {
@@ -12,9 +13,19 @@ namespace GameInfrestructure.Repositories
             _gameContext = gameContext;
         }
 
-        public async Task<List<Token>> GetTokens()
+        public async Task<List<Token>> GetTokens(TokenSearchParameters parameters)
         {
-            return await _gameContext.Tokens.ToListAsync();
+            if (parameters.TokenIds.Length == 0 && parameters.MapIds.Length == 0)
+            {
+                return await _gameContext.Tokens.ToListAsync();
+            }
+            else
+            {
+                return await _gameContext.Tokens
+                    .Where(t => parameters.TokenIds.ToList().Contains((int)t.TokenId) || parameters.TokenIds.Length == 0)
+                    .Where(t => parameters.MapIds.ToList().Contains((int)t.MapId) || parameters.MapIds.Length == 0)
+                    .ToListAsync();
+            }
         }
 
         public async Task<Token> InsertToken(Token token)
@@ -36,6 +47,13 @@ namespace GameInfrestructure.Repositories
             return await _gameContext.Tokens
                 .Include(t => t.Image)
                 .ToListAsync();
+        }
+
+        public async Task<Token> UpdateToken(Token token)
+        {
+            _gameContext.Tokens.Update(token);
+            await _gameContext.SaveChangesAsync();
+            return token;
         }
     }
 }

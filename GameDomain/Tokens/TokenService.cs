@@ -11,7 +11,7 @@
 
         public async Task<List<Token>> GetTokens()
         {
-            return await _tokenRepository.GetTokens();
+            return await _tokenRepository.GetTokens( new TokenSearchParameters());
         }
 
         public async Task<Token> CreateToken(TokenDTO token)
@@ -32,6 +32,23 @@
         public async Task<List<Token>> GetTokensWithImages()
         {
             return await _tokenRepository.GetTokensWithImages();
+        }
+
+        public async Task<Token> UpdateToken(Token token)
+        {
+            if(token.TokenId== null)
+            {
+                throw new ArgumentNullException("Token Id not provided");
+            }
+            var dbRecord = await _tokenRepository.GetTokens(new TokenSearchParameters() { TokenIds = new int[1] {(int)token.TokenId} });
+            if (dbRecord.Count == 0)
+            {
+                throw new ArgumentException("No Record Found");
+            }
+            var originalToken = dbRecord[0];
+            originalToken.UpdateToken(token);
+            var result = await _tokenRepository.UpdateToken(originalToken);
+            return result;
         }
     }
 }
