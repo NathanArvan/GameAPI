@@ -7,6 +7,7 @@ namespace GameInfrestructure
 {
     public class GameContext: DbContext
     {
+        public GameContext() { }
         public GameContext(DbContextOptions<GameContext> options) : base(options) { }
         public DbSet<Ability> Abilities { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
