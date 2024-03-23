@@ -1,4 +1,4 @@
-﻿using GameDomain;
+﻿using GameDomain.Characters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GameAPI.Controllers

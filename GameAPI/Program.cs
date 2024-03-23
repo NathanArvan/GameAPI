@@ -1,4 +1,4 @@
-using GameDomain;
+using GameDomain.Characters;
 using GameDomain.Maps;
 using GameDomain.Tokens;
 using GameInfrestructure;

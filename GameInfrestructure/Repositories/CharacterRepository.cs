@@ -1,4 +1,4 @@
-﻿using GameDomain;
+﻿using GameDomain.Characters;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameInfrestructure.Repositories
@@ -16,5 +16,13 @@ namespace GameInfrestructure.Repositories
         {
             return await _context.Characters.ToListAsync();
         }
+
+        public async Task<Character> CreateCharacter(Character character)
+        {
+            _context.Characters.Add(character);
+            await _context.SaveChangesAsync();
+            return character;
+        }
+
     }
 }

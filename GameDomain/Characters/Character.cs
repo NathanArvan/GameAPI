@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GameDomain
+namespace GameDomain.Characters
 {
     public class Character
     {
