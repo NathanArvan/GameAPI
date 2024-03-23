@@ -48,5 +48,21 @@ namespace UnitTests
                 Assert.Single(results);
             }
         }
+
+        [Fact]
+        public async Task UpdateCharacterShouldChangeCharacterValues()
+        {
+            using (var context = CreateContext())
+            {
+                await context.Database.EnsureCreatedAsync();
+                var repo = new CharacterRepository(context);
+                var service = new CharacterService(repo);
+                var testCharacter = new Character() { HitPoints = 10};
+                await repo.CreateCharacter(testCharacter);
+                testCharacter.HitPoints = 1;
+                var result = await service.UpdateCharacter(testCharacter);
+                Assert.Equal(1, result.HitPoints);
+            }
+        }
     }
 }

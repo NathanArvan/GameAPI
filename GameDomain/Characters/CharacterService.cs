@@ -18,5 +18,10 @@
         {
             return await _repository.CreateCharacter(character);
         }
+
+        public async Task<Character> UpdateCharacter(Character character)
+        {
+            return await _repository.UpdateCharacter(character);
+        }
     }
 }
