@@ -33,5 +33,12 @@ namespace GameAPI.Controllers
         {
             return await _mapService.CreateMap(map);
         }
+
+        [HttpPut("maps")]
+        [Produces("application/json")]
+        public async Task<Map> UpdateMap(Map map)
+        {
+            return await _mapService.UpdateMap(map);
+        }
     }
 }

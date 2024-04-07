@@ -31,5 +31,12 @@ namespace GameInfrestructure.Repositories
             await _gameContext.SaveChangesAsync();
             return map;
         }
+
+        public async Task<Map> UpdateMap (Map map)
+        {
+            _gameContext.Maps.Update(map);
+            await _gameContext.SaveChangesAsync();
+            return map;
+        }
     }
 }
