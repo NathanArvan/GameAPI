@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace GameDomain
+namespace GameDomain.Abilities
 {
     public class Ability
     {
         public int AbilityId { get; set; }
-        public string Name { get; set;} = string.Empty;
+        public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         [NotMapped]
         public object Target { get; set; } = new object();
