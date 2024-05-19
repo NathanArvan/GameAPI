@@ -16,5 +16,19 @@ namespace GameInfrestructure.Repositories
         {
             return await _context.Abilities.ToListAsync();
         }
+
+        public async Task<Ability> CreateAbility(Ability ability)
+        {
+            _context.Abilities.Add(ability);
+            await _context.SaveChangesAsync();
+            return ability;
+        }
+
+        public async Task<Ability> UpdateAbility(Ability ability)
+        {
+            _context.Abilities.Update(ability);
+            await _context.SaveChangesAsync();
+            return ability;
+        }
     }
 }

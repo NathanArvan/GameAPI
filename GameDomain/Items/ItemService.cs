@@ -10,5 +10,15 @@
         {
             return await _itemRepository.GetItems();
         }
+
+        public async Task<Item> CreateItem(Item item)
+        {
+            return await _itemRepository.CreateItem(item);
+        }
+
+        public async Task<Item> UpdateItem(Item item)
+        {
+            return await _itemRepository.UpdateItem(item);
+        }
     }
 }

@@ -17,5 +17,17 @@ namespace GameAPI.Controllers
         {
             return await _itemService.GetItems();
         }
+
+        [HttpPost("items")]
+        public async Task<Item> CreateItem(Item item)
+        {
+            return await _itemService.CreateItem(item);
+        }
+
+        [HttpPut("items/{id}")]
+        public async Task<Item> UpdateItem(Item item)
+        {
+            return await _itemService.UpdateItem(item);
+        }
     }
 }

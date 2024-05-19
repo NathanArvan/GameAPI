@@ -15,5 +15,19 @@ namespace GameAPI.Controllers
             var result = await _service.GetAbilities();
             return result;
         }
+
+        [HttpPost("abilities")]
+        public async Task<Ability> CreateAbility([FromBody]Ability ability)
+        {
+            var result =  await _service.CreateAbility(ability);
+            return result;
+        }
+
+        [HttpPut("abilities/{id}")]
+        public async Task<Ability> UpdateAbility([FromBody] Ability ability)
+        {
+            var result = await _service.UpdateAbility(ability); 
+            return result;
+        }
     }
 }

@@ -14,5 +14,19 @@ namespace GameInfrestructure.Repositories
         {
             return await _context.Items.ToListAsync();
         }
+
+        public async Task<Item> CreateItem(Item item)
+        {
+            _context.Items.Add(item);
+            await _context.SaveChangesAsync();
+            return item;
+        }
+
+        public async Task<Item> UpdateItem(Item item)
+        {
+            _context.Items.Update(item);
+            await _context.SaveChangesAsync();
+            return item;
+        }
     }
 }
