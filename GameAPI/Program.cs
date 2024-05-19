@@ -1,5 +1,6 @@
 using GameDomain.Abilities;
 using GameDomain.Characters;
+using GameDomain.Items;
 using GameDomain.Maps;
 using GameDomain.Tokens;
 using GameInfrestructure;
@@ -24,6 +25,8 @@ builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<ITokenRepository, TokenRepository>();
 builder.Services.AddScoped<AbilityService>();
 builder.Services.AddScoped<IAbilityRepository, AbilityRepository>();
+builder.Services.AddScoped<ItemService>();
+builder.Services.AddScoped<IItemRepository, ItemRepository>();
 builder.Services.AddDbContext<GameContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("GameContext")));
 builder.Services.AddCors(options =>
 {

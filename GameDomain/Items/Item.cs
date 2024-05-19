@@ -1,4 +1,4 @@
-﻿namespace GameDomain
+﻿namespace GameDomain.Items
 {
     public class Item
     {

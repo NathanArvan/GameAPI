@@ -1,6 +1,7 @@
 ﻿using GameDomain;
 using GameDomain.Abilities;
 using GameDomain.Characters;
+using GameDomain.Items;
 using GameDomain.Maps;
 using GameDomain.Tokens;
 using Microsoft.EntityFrameworkCore;
