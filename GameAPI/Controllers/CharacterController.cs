@@ -20,9 +20,15 @@ namespace GameAPI.Controllers
             return await this.characterService.GetCharacters();
         }
 
+        [HttpPost("characters")]
+        public async Task<Character> CreateCharacter([FromBody] Character character)
+        {
+            return await this.characterService.CreateCharacter(character);
+        }
+
         [HttpPut("characters/{id}")]
         [Produces("application/json")]
-        public async Task<Character> UpdateCharacter(Character character)
+        public async Task<Character> UpdateCharacter([FromBody] Character character)
         {
             return await this.characterService.UpdateCharacter(character);
         }
