@@ -24,6 +24,17 @@ namespace GameInfrestructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Character>().ToTable("Character");
+            modelBuilder.Entity<Item>()
+                .HasMany(e => e.Abilities)
+                .WithMany(e => e.Items);
+
+            modelBuilder.Entity<Character>()
+                .HasMany(e => e.EquipedItems)
+                .WithMany(e => e.Characters);
+
+            modelBuilder.Entity<Character>()
+                .HasOne<Token>(e => e.Token)
+                .WithMany(e => e.Characters);
         }
     }
 }

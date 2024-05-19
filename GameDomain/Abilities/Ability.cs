@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using GameDomain.Items;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameDomain.Abilities
 {
@@ -15,5 +16,6 @@ namespace GameDomain.Abilities
         public int Duration { get; set; }
         [NotMapped]
         public object Requirements { get; set; } = new object();
+        public List<Item> Items { get; set; }
     }
 }
