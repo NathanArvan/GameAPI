@@ -6,7 +6,7 @@
     [Range]       INT         NULL,
     [Duration]    INT         NULL,
     [Requirments] INT         NULL,
-    [AbilityId]   INT         NOT NULL,
+    [AbilityId]   INT   IDENTITY      NOT NULL,
     PRIMARY KEY CLUSTERED ([AbilityId] ASC)
 );
 
