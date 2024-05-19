@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using GameDomain.Items;
+using GameDomain.Tokens;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameDomain.Characters
 {
@@ -7,8 +9,10 @@ namespace GameDomain.Characters
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CharacterId { get; set; }
         public string Name { get; set; } = string.Empty;
+        public int TokenId { get; set; }
+
         [NotMapped]
-        public string Image { get; set; } = string.Empty;
+        public Token? Token { get; set; }
         public decimal CarryingCapacity { get; set; }
         public List<Item> EquipedItems { get; set; } = new List<Item>();
         public List<Item> StoredItems { get; set; } = new List<Item>();
