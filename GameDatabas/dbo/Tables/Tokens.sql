@@ -5,7 +5,6 @@
     [XPosition]   INT NULL,
     [YPosition]   INT NULL,
     CONSTRAINT [PK_Tokens_TokenId] PRIMARY KEY CLUSTERED ([TokenId] ASC),
-    CONSTRAINT [FK_TokenId_CharacterId] FOREIGN KEY ([CharacterId]) REFERENCES [dbo].[Character] ([CharacterId]) ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT [FK_TokenId_MapId] FOREIGN KEY ([MapId]) REFERENCES [dbo].[Maps] ([MapId]) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
