@@ -35,7 +35,7 @@ namespace UnitTests
         public void Dispose() => _connection.Dispose();
 
         [Fact]
-        public async Task CreateMapShouldReturnAMapObject()
+        public async Task CreateCharacterShouldReturnACharacterObject()
         {
             using (var context = CreateContext())
             {

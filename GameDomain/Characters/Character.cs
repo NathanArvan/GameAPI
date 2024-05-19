@@ -9,13 +9,13 @@ namespace GameDomain.Characters
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CharacterId { get; set; }
         public string Name { get; set; } = string.Empty;
-        public int TokenId { get; set; }
-
+        public int? TokenId { get; set; }
         [NotMapped]
+
         public Token? Token { get; set; }
         public decimal CarryingCapacity { get; set; }
-        public List<Item> EquipedItems { get; set; } = new List<Item>();
-        public List<Item> StoredItems { get; set; } = new List<Item>();
+        public List<Item>? EquipedItems { get; set; } = new List<Item>();
+        // public List<Item> StoredItems { get; set; } = new List<Item>();
         public int HitPoints { get; set; }
         public int ManaPoints { get; set; }
         public int StaminaPoints { get; set; }

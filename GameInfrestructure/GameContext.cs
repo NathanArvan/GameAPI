@@ -34,7 +34,8 @@ namespace GameInfrestructure
 
             modelBuilder.Entity<Character>()
                 .HasOne<Token>(e => e.Token)
-                .WithMany(e => e.Characters);
+                .WithMany(e => e.Characters)
+                .IsRequired(false);
         }
     }
 }
