@@ -19,13 +19,13 @@ namespace GameAPI.Controllers
         }
 
         [HttpPost("items")]
-        public async Task<Item> CreateItem(Item item)
+        public async Task<Item> CreateItem([FromBody] Item item)
         {
             return await _itemService.CreateItem(item);
         }
 
         [HttpPut("items/{id}")]
-        public async Task<Item> UpdateItem(Item item)
+        public async Task<Item> UpdateItem([FromBody] Item item)
         {
             return await _itemService.UpdateItem(item);
         }

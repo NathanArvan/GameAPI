@@ -1,4 +1,5 @@
-﻿using GameDomain.Items;
+﻿using GameDomain.Abilities;
+using GameDomain.Items;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameInfrestructure.Repositories
@@ -18,6 +19,7 @@ namespace GameInfrestructure.Repositories
         public async Task<Item> CreateItem(Item item)
         {
             _context.Items.Add(item);
+            //_context.Abilities.Find
             await _context.SaveChangesAsync();
             return item;
         }
@@ -27,6 +29,11 @@ namespace GameInfrestructure.Repositories
             _context.Items.Update(item);
             await _context.SaveChangesAsync();
             return item;
+        }
+
+        public async Task<Item> AddAbility(Item item, Ability ability)
+        {
+
         }
     }
 }

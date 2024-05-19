@@ -19,6 +19,10 @@
         public async Task<Item> UpdateItem(Item item)
         {
             return await _itemRepository.UpdateItem(item);
+
+            // for ability in abilities
+
+            // get ability from ability repo, add relationship to item to list.
         }
     }
 }
