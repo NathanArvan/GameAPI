@@ -26,7 +26,13 @@ namespace GameInfrestructure
             modelBuilder.Entity<Character>().ToTable("Character");
             modelBuilder.Entity<Item>()
                 .HasMany(e => e.Abilities)
-                .WithMany(e => e.Items);
+                .WithMany(e => e.Items)
+                .UsingEntity(
+                    "ItemAbilities",
+                    l => l.HasOne(typeof(Ability)).WithMany().HasForeignKey("AbilityIds").HasPrincipalKey(nameof(Ability.AbilityId)),
+                    r => r.HasOne(typeof(Item)).WithMany().HasForeignKey("ItemIds").HasPrincipalKey(nameof(Item.ItemId)),
+                    j => j.HasKey("AbilityIds", "ItemIds")
+                );
 
             modelBuilder.Entity<Character>()
                 .HasMany(e => e.EquipedItems)

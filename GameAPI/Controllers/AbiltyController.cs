@@ -10,9 +10,9 @@ namespace GameAPI.Controllers
         public AbiltyController(AbilityService service) { _service = service; }
 
         [HttpGet("abilities")]
-        public async Task<List<Ability>> GetAbilities()
+        public async Task<List<Ability>> GetAbilities(AbilityQueryParameteres abilityQueryParameteres)
         {
-            var result = await _service.GetAbilities();
+            var result = await _service.GetAbilities(abilityQueryParameteres);
             return result;
         }
 

@@ -9,9 +9,9 @@
             _repo = repo;
         }
 
-        public async Task<List<Ability>> GetAbilities()
+        public async Task<List<Ability>> GetAbilities(AbilityQueryParameteres abilityQueryParameteres)
         {
-            return await _repo.GetAbilities();
+            return await _repo.GetAbilities(abilityQueryParameteres);
         }
 
         public async Task<Ability> CreateAbility(Ability ability)

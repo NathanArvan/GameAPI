@@ -12,9 +12,18 @@ namespace GameInfrestructure.Repositories
             _context = context;
         }
 
-        public async Task<List<Ability>> GetAbilities()
+        public async Task<List<Ability>> GetAbilities(AbilityQueryParameteres abilityQueryParameteres)
         {
-            return await _context.Abilities.ToListAsync();
+            if( abilityQueryParameteres.AbilityIds.Count() == 0)
+            {
+                return await _context.Abilities.ToListAsync();
+            }
+            else
+            {
+                return await _context.Abilities
+                    .Where(a => abilityQueryParameteres.AbilityIds.Contains(a.AbilityId))
+                    .ToListAsync();
+            }
         }
 
         public async Task<Ability> CreateAbility(Ability ability)

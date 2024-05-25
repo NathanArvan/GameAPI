@@ -13,7 +13,9 @@ namespace GameInfrestructure.Repositories
 
         public async Task<List<Item>> GetItems()
         {
-            return await _context.Items.ToListAsync();
+            return await _context.Items
+                .Include(i => i.Abilities)
+                .ToListAsync();
         }
 
         public async Task<Item> CreateItem(Item item)
@@ -29,11 +31,6 @@ namespace GameInfrestructure.Repositories
             _context.Items.Update(item);
             await _context.SaveChangesAsync();
             return item;
-        }
-
-        public async Task<Item> AddAbility(Item item, Ability ability)
-        {
-
         }
     }
 }

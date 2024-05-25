@@ -19,7 +19,7 @@ namespace GameAPI.Controllers
         }
 
         [HttpPost("items")]
-        public async Task<Item> CreateItem([FromBody] Item item)
+        public async Task<Item> CreateItem([FromBody] CreateItemDTO item)
         {
             return await _itemService.CreateItem(item);
         }
