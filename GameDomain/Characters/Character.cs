@@ -14,7 +14,7 @@ namespace GameDomain.Characters
 
         public Token? Token { get; set; }
         public decimal CarryingCapacity { get; set; }
-        public List<Item>? EquipedItems { get; set; } = new List<Item>();
+        public List<Item>? Items { get; set; } = new List<Item>();
         // public List<Item> StoredItems { get; set; } = new List<Item>();
         public int HitPoints { get; set; }
         public int ManaPoints { get; set; }

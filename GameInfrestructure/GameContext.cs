@@ -35,8 +35,14 @@ namespace GameInfrestructure
                 );
 
             modelBuilder.Entity<Character>()
-                .HasMany(e => e.EquipedItems)
-                .WithMany(e => e.Characters);
+                .HasMany(e => e.Items)
+                .WithMany(e => e.Characters)
+                .UsingEntity(
+                    "CharacterItems",
+                    l => l.HasOne(typeof(Item)).WithMany().HasForeignKey("ItemIds").HasPrincipalKey(nameof(Item.ItemId)),
+                    r => r.HasOne(typeof(Character)).WithMany().HasForeignKey("CharacterIds").HasPrincipalKey(nameof(Character.CharacterId)),
+                    j => j.HasKey("CharacterIds", "ItemIds")
+                );
 
             modelBuilder.Entity<Character>()
                 .HasOne<Token>(e => e.Token)
