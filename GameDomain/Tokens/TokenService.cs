@@ -18,14 +18,16 @@
         {
             var result = await _tokenRepository.InsertToken(token);
 
-            using (var stream = new MemoryStream())
+            if (token.File != null)
             {
-                token.File.CopyTo(stream);
-                var file = stream.ToArray();
-                var image = new TokenImage() { TokenId = result.TokenId, Image = file };
-                await _tokenRepository.InsertTokenImage(image);
+                using (var stream = new MemoryStream())
+                {
+                    token.File.CopyTo(stream);
+                    var file = stream.ToArray();
+                    var image = new TokenImage() { TokenId = result.TokenId, Image = file };
+                    await _tokenRepository.InsertTokenImage(image);
+                }
             }
-
             return result;
         }
 
