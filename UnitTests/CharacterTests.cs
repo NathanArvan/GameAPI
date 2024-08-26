@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using GameDomain;
 using GameDomain.Characters;
+using GameDomain.Abilities;
+using GameDomain.Items;
 
 namespace UnitTests
 {
@@ -62,6 +64,38 @@ namespace UnitTests
                 testCharacter.HitPoints = 1;
                 var result = await service.UpdateCharacter(testCharacter);
                 Assert.Equal(1, result.HitPoints);
+            }
+        }
+
+        [Fact]
+        public async Task ACharacterShouldGetAssignedItemsWithAbilitites()
+        {
+            using (var context = CreateContext())
+            {
+                await context.Database.EnsureCreatedAsync();
+
+                var abilityRepo = new AbilityRepository(context);
+                var abilityService = new AbilityService(abilityRepo);
+
+                var repo = new CharacterRepository(context);
+                var service = new CharacterService(repo);
+
+                var itemRepo = new ItemRepository(context);
+                var itemService = new ItemService(itemRepo, abilityRepo);
+
+
+                var testAbility = new Ability() { Name = "Test Ability" };
+                testAbility = await abilityRepo.CreateAbility(testAbility);
+
+                var testItem = new Item() { Name = "Test Item", Abilities = new List<Ability>() { testAbility } };
+                testItem = await itemRepo.CreateItem(testItem);
+
+
+                var testCharacter = new Character() { Name = " Test Character", Items = new List<Item>() { testItem } };
+                await repo.CreateCharacter(testCharacter);
+                var results = await service.GetCharacters();
+                var result = results.FirstOrDefault();
+                Assert.Equal("Test Ability", result.Items.First().Abilities.First().Name);
             }
         }
     }
