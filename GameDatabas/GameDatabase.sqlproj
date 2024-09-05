@@ -73,5 +73,6 @@
     <Build Include="dbo\Tables\ItemAbilities.sql" />
     <Build Include="dbo\Tables\StoredItems.sql" />
     <Build Include="dbo\Tables\Character.sql" />
+    <Build Include="dbo\Tables\Battles.sql" />
   </ItemGroup>
 </Project>

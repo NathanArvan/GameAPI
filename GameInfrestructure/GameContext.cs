@@ -1,5 +1,6 @@
 ﻿using GameDomain;
 using GameDomain.Abilities;
+using GameDomain.Battle;
 using GameDomain.Characters;
 using GameDomain.Items;
 using GameDomain.Maps;
@@ -20,6 +21,7 @@ namespace GameInfrestructure
         public DbSet<Map> Maps { get; set; }
         public DbSet<Token> Tokens { get; set; }
         public DbSet<TokenImage> TokenImages { get; set; }
+        public DbSet<Battle> Batttles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
