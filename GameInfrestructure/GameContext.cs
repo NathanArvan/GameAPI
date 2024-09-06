@@ -1,6 +1,6 @@
 ﻿using GameDomain;
 using GameDomain.Abilities;
-using GameDomain.Battle;
+using GameDomain.Battles;
 using GameDomain.Characters;
 using GameDomain.Items;
 using GameDomain.Maps;
@@ -49,6 +49,12 @@ namespace GameInfrestructure
             modelBuilder.Entity<Character>()
                 .HasOne<Token>(e => e.Token)
                 .WithMany(e => e.Characters)
+                .IsRequired(false);
+
+            modelBuilder.Entity<Battle>()
+                .HasMany(b => b.Characters)
+                .WithOne(c => c.Battle)
+                .HasForeignKey(c => c.BattleId)
                 .IsRequired(false);
         }
     }

@@ -1,5 +1,6 @@
 ﻿using GameDomain.Items;
 using GameDomain.Tokens;
+using GameDomain.Battles;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameDomain.Characters
@@ -8,6 +9,8 @@ namespace GameDomain.Characters
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CharacterId { get; set; }
+        public int BattleId { get; set; }
+        public Battle Battle { get; set; }
         public string Name { get; set; } = string.Empty;
         public int? TokenId { get; set; }
         [NotMapped]
