@@ -24,6 +24,13 @@ namespace GameInfrestructure.Repositories
             return character;
         }
 
+        public async Task<List<Character>> CreateCharacters(List<Character> characters)
+        {
+            _context.Characters.AddRange(characters);
+            await _context.SaveChangesAsync();
+            return characters;
+        }
+
         public async Task<Character> UpdateCharacter(Character character)
         {
             _context.Characters.Update(character);
