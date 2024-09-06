@@ -1,5 +1,5 @@
 using GameDomain.Abilities;
-using GameDomain.Battle;
+using GameDomain.Battles;
 using GameDomain.Characters;
 using GameDomain.Items;
 using GameDomain.Maps;

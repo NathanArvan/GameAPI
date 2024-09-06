@@ -1,4 +1,4 @@
-using GameDomain.Battle;
+using GameDomain.Battles;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GameAPI.Controllers

@@ -1,6 +1,6 @@
 ﻿using GameDomain.Characters;
 
-namespace GameDomain.Battle
+namespace GameDomain.Battles
 {
     public class BattleService
     {

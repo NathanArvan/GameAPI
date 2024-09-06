@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using GameDomain.Characters;
 using GameDomain.Items;
-namespace GameDomain.Battle
+namespace GameDomain.Battles
 {
     public class Battle
     {

@@ -1,4 +1,4 @@
-﻿namespace GameDomain.Battle
+﻿namespace GameDomain.Battles
 {
     public interface IBattleRepository
     {
