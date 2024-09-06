@@ -12,9 +12,16 @@ namespace GameInfrestructure.Repositories
             _context = context;
         }
 
-        public async Task<List<Character>> Query()
+        public async Task<List<Character>> Query(CharacterQueryParameters parameters)
         {
-            return await _context.Characters.ToListAsync();
+            if (parameters.characterIds.Length == 0 && parameters.battleIds.Length == 0)
+            {
+                return await _context.Characters.ToListAsync();
+            }
+            return await _context.Characters
+                .Where(c => parameters.characterIds.Contains(c.CharacterId) ||
+                         parameters.battleIds.Contains(c.BattleId))
+                .ToListAsync();
         }
 
         public async Task<Character> CreateCharacter(Character character)

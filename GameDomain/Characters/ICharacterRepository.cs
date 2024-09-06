@@ -2,7 +2,7 @@
 {
     public interface ICharacterRepository
     {
-        public Task<List<Character>> Query();
+        public Task<List<Character>> Query(CharacterQueryParameters parameters);
 
         public Task<Character> CreateCharacter(Character character);
 

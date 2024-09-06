@@ -15,9 +15,9 @@ namespace GameAPI.Controllers
 
         [HttpGet("characters")]
         [Produces("application/json")]
-        public async Task<List<Character>> GetCharacters()
+        public async Task<List<Character>> GetCharacters(CharacterQueryParameters parameters)
         {
-            return await this.characterService.GetCharacters();
+            return await this.characterService.GetCharacters(parameters);
         }
 
         [HttpPost("characters")]

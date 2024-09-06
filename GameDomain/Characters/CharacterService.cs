@@ -9,9 +9,9 @@
             _repository = repository;
         }
 
-        public Task<List<Character>> GetCharacters()
+        public Task<List<Character>> GetCharacters(CharacterQueryParameters parameters)
         {
-            return _repository.Query();
+            return _repository.Query(parameters);
         }
 
         public async Task<Character> CreateCharacter(Character character)
