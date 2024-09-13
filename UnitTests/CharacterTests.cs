@@ -46,7 +46,7 @@ namespace UnitTests
                 var service = new CharacterService(repo);
                 var testCharacter = new Character();
                 await service.CreateCharacter(testCharacter);
-                var results = await repo.Query();
+                var results = await repo.Query(new CharacterQueryParameters());
                 Assert.Single(results);
             }
         }
@@ -93,7 +93,7 @@ namespace UnitTests
 
                 var testCharacter = new Character() { Name = " Test Character", Items = new List<Item>() { testItem } };
                 await repo.CreateCharacter(testCharacter);
-                var results = await service.GetCharacters();
+                var results = await service.GetCharacters(new CharacterQueryParameters());
                 var result = results.FirstOrDefault();
                 Assert.Equal("Test Ability", result.Items.First().Abilities.First().Name);
             }
