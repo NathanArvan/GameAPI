@@ -4,6 +4,7 @@ using GameDomain.Battles;
 using GameDomain.Characters;
 using GameDomain.Items;
 using GameDomain.Maps;
+using GameDomain.RuleSets;
 using GameDomain.Tokens;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,6 +23,8 @@ namespace GameInfrestructure
         public DbSet<Token> Tokens { get; set; }
         public DbSet<TokenImage> TokenImages { get; set; }
         public DbSet<Battle> Batttles { get; set; }
+
+        public DbSet<RuleSet> RuleSets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -55,6 +58,24 @@ namespace GameInfrestructure
                 .HasMany(b => b.Characters)
                 .WithOne(c => c.Battle)
                 .HasForeignKey(c => c.BattleId)
+                .IsRequired(false);
+
+            modelBuilder.Entity<RuleSet>()
+                .HasMany(r => r.Items)
+                .WithOne(i => i.RuleSet)
+                .HasForeignKey(i => i.RuleSetId)
+                .IsRequired(false);
+
+            modelBuilder.Entity<RuleSet>()
+                .HasMany(r => r.Battles)
+                .WithOne(b => b.RuleSet)
+                .HasForeignKey(b => b.RuleSetId)
+                .IsRequired(false);
+
+            modelBuilder.Entity<RuleSet>()
+                .HasMany(r => r.Abilities)
+                .WithOne(a => a.RuleSet)
+                .HasForeignKey(a => a.RuleSetId)
                 .IsRequired(false);
         }
     }
