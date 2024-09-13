@@ -25,20 +25,15 @@ namespace GameInfrestructure
         public DbSet<Battle> Batttles { get; set; }
 
         public DbSet<RuleSet> RuleSets { get; set; }
+        public DbSet<ItemAbility> ItemAbilities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Character>().ToTable("Character");
-            modelBuilder.Entity<ItemAbility>().ToTable("ItemAbilities");
             modelBuilder.Entity<Item>()
                 .HasMany(e => e.Abilities)
                 .WithMany(e => e.Items)
-                .UsingEntity(
-                    "ItemAbilities",
-                    l => l.HasOne(typeof(Ability)).WithMany().HasForeignKey("AbilityIds").HasPrincipalKey(nameof(Ability.AbilityId)),
-                    r => r.HasOne(typeof(Item)).WithMany().HasForeignKey("ItemIds").HasPrincipalKey(nameof(Item.ItemId)),
-                    j => j.HasKey("AbilityIds", "ItemIds")
-                );
+                .UsingEntity<ItemAbility>();
 
             modelBuilder.Entity<Character>()
                 .HasMany(e => e.Items)
