@@ -29,6 +29,7 @@ namespace GameInfrestructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Character>().ToTable("Character");
+            modelBuilder.Entity<ItemAbility>().ToTable("ItemAbilities");
             modelBuilder.Entity<Item>()
                 .HasMany(e => e.Abilities)
                 .WithMany(e => e.Items)
@@ -77,6 +78,18 @@ namespace GameInfrestructure
                 .WithOne(a => a.RuleSet)
                 .HasForeignKey(a => a.RuleSetId)
                 .IsRequired(false);
+
+            modelBuilder.Entity<RuleSet>()
+                .HasData(new RuleSet { RuleSetId = 1, Name = "Test" });
+
+            modelBuilder.Entity<Item>()
+                .HasData(new Item { ItemId = 1, RuleSetId = 1, Name = "Bow" });
+
+            modelBuilder.Entity<Ability>()
+                .HasData(new Ability { AbilityId = 1, RuleSetId = 1, Name = "Shoot Arrow" });
+
+            modelBuilder.Entity<ItemAbility>()
+                .HasData(new ItemAbility { ItemAbilityId =1 ,ItemId = 1, AbilityId = 1 });
         }
     }
 }
