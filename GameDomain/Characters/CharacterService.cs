@@ -34,7 +34,7 @@
             found.yPosition = character.yPosition;
             found.HitPoints = character.HitPoints;  
             
-            return await _repository.UpdateCharacter(character);
+            return await _repository.UpdateCharacter(found);
         }
     }
 }
