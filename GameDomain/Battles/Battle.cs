@@ -10,7 +10,7 @@ namespace GameDomain.Battles
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int? BattleId { get; set; }
-        public int RuleSetId { get; set; }
+        public int? RuleSetId { get; set; }
         public RuleSet? RuleSet { get; set; }
         public int? Turn {  get; set; }
 

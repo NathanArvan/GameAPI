@@ -13,9 +13,9 @@ namespace GameAPI.Controllers
         }
 
         [HttpGet("items")]
-        public async Task<List<Item>> GetItems()
+        public async Task<List<Item>> GetItems(ItemQueryParameters parameters)
         {
-            return await _itemService.GetItems();
+            return await _itemService.GetItems(parameters);
         }
 
         [HttpPost("items")]

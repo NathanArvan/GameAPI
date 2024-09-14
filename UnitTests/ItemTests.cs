@@ -39,6 +39,7 @@ namespace UnitTests
             using (var context = CreateContext())
             {
                 await context.Database.EnsureCreatedAsync();
+                //await context.Database.
 
                 var abilityRepo = new AbilityRepository(context);
                 var abilityService = new AbilityService(abilityRepo);
@@ -48,7 +49,7 @@ namespace UnitTests
                 var service = new ItemService(repo, abilityRepo);
                 var testItem = new Item() {Name = "Test Item", Abilities = new List<Ability>() { testAbility} };
                 await repo.CreateItem(testItem);
-                var results = await service.GetItems();
+                var results = await service.GetItems(new ItemQueryParameters() { itemIds = new int[1] { (int)testItem.ItemId } });
                 Assert.Equal("Test Ability", results.First().Abilities.First().Name);
             }
 

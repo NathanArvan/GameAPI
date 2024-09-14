@@ -11,9 +11,15 @@ namespace GameInfrestructure.Repositories
             _context = context;
         }
 
-        public async Task<List<Item>> GetItems()
+        public async Task<List<Item>> GetItems(ItemQueryParameters parameters)
         {
+            if (parameters.itemIds.Length == 0) {
+                return await _context.Items
+                    .Include(i => i.Abilities)
+                    .ToListAsync();
+            }
             return await _context.Items
+                .Where(i => parameters.itemIds.Contains((int)i.ItemId))
                 .Include(i => i.Abilities)
                 .ToListAsync();
         }

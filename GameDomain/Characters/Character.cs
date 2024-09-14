@@ -9,7 +9,7 @@ namespace GameDomain.Characters
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CharacterId { get; set; }
-        public int BattleId { get; set; }
+        public int? BattleId { get; set; }
         public Battle Battle { get; set; }
         public string Name { get; set; } = string.Empty;
         public int? TokenId { get; set; }

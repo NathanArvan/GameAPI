@@ -12,9 +12,9 @@ namespace GameDomain.Items
             _abilityRepository = abilityRepository;
         }
 
-        public async Task<List<Item>> GetItems()
+        public async Task<List<Item>> GetItems(ItemQueryParameters parameters)
         {
-            var result = await _itemRepository.GetItems();
+            var result = await _itemRepository.GetItems(parameters);
             result.ForEach(item =>
             {
                 item.Abilities.ForEach(ability =>

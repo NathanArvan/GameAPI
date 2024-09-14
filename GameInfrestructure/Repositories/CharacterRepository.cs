@@ -20,7 +20,7 @@ namespace GameInfrestructure.Repositories
             }
             return await _context.Characters
                 .Where(c => parameters.characterIds.Contains(c.CharacterId) ||
-                         parameters.battleIds.Contains(c.BattleId))
+                         parameters.battleIds.Contains((int)c.BattleId))
                 .ToListAsync();
         }
 

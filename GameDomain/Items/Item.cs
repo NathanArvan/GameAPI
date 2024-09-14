@@ -11,7 +11,7 @@ namespace GameDomain.Items
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int? ItemId { get; set; }
-        public int RuleSetId { get; set; }
+        public int? RuleSetId { get; set; }
         public RuleSet? RuleSet { get; set; }
         public string Name { get; set; } = string.Empty;
         public decimal Weight { get; set; }
