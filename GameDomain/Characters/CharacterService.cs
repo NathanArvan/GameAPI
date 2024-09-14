@@ -26,6 +26,14 @@
 
         public async Task<Character> UpdateCharacter(Character character)
         {
+            var query = await _repository.Query(new CharacterQueryParameters() { characterIds = new int[1] { character.CharacterId } });
+
+            var found = query.FirstOrDefault();
+
+            found.xPosition = character.xPosition;
+            found.yPosition = character.yPosition;
+            found.HitPoints = character.HitPoints;  
+            
             return await _repository.UpdateCharacter(character);
         }
     }

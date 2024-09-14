@@ -10,7 +10,7 @@ namespace GameDomain.Characters
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CharacterId { get; set; }
         public int? BattleId { get; set; }
-        public Battle Battle { get; set; }
+        public Battle? Battle { get; set; }
         public string Name { get; set; } = string.Empty;
         public int? TokenId { get; set; }
         [NotMapped]
@@ -29,5 +29,8 @@ namespace GameDomain.Characters
         public int Actions { get; set; }
         public int Accuracy { get; set; }
         public int Evasion { get; set; }
+        public int xPosition { get; set; }
+        public int yPosition { get; set; }
+        public string image {  get; set; } = String.Empty;
     }
 }
