@@ -2,6 +2,7 @@
 using GameDomain.Abilities;
 using GameDomain.Battles;
 using GameDomain.Characters;
+using GameDomain.Classes;
 using GameDomain.Items;
 using GameDomain.Maps;
 using GameDomain.RuleSets;
