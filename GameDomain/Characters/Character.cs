@@ -2,6 +2,7 @@
 using GameDomain.Tokens;
 using GameDomain.Battles;
 using System.ComponentModel.DataAnnotations.Schema;
+using GameDomain.Users;
 
 namespace GameDomain.Characters
 {
@@ -11,6 +12,8 @@ namespace GameDomain.Characters
         public int CharacterId { get; set; }
         public int? BattleId { get; set; }
         public Battle? Battle { get; set; }
+        public int? UserId { get; set; }
+        public User? User { get; set; }
         public string Name { get; set; } = string.Empty;
         public int? TokenId { get; set; }
         [NotMapped]

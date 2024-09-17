@@ -6,6 +6,7 @@ using GameDomain.Items;
 using GameDomain.Maps;
 using GameDomain.RuleSets;
 using GameDomain.Tokens;
+using GameDomain.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace GameInfrestructure
@@ -26,10 +27,10 @@ namespace GameInfrestructure
 
         public DbSet<RuleSet> RuleSets { get; set; }
         public DbSet<ItemAbility> ItemAbilities { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Character>().ToTable("Character");
             modelBuilder.Entity<Item>()
                 .HasMany(e => e.Abilities)
                 .WithMany(e => e.Items)
@@ -72,6 +73,12 @@ namespace GameInfrestructure
                 .HasMany(r => r.Abilities)
                 .WithOne(a => a.RuleSet)
                 .HasForeignKey(a => a.RuleSetId)
+                .IsRequired(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Characters)
+                .WithOne(c => c.User)
+                .HasForeignKey(c => c.UserId)
                 .IsRequired(false);
 
             modelBuilder.Entity<RuleSet>()
