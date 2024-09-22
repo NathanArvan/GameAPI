@@ -37,6 +37,12 @@ namespace GameInfrestructure
                 .WithMany(e => e.Items)
                 .UsingEntity<ItemAbility>();
 
+            modelBuilder.Entity<Class>()
+                .HasMany(e => e.Characters)
+                .WithMany(e => e.Classes)
+                .UsingEntity<CharacterClass>();
+
+
             modelBuilder.Entity<Character>()
                 .HasMany(e => e.Items)
                 .WithMany(e => e.Characters)
