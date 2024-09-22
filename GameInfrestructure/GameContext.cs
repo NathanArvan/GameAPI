@@ -99,6 +99,15 @@ namespace GameInfrestructure
 
             modelBuilder.Entity<ItemAbility>()
                 .HasData(new ItemAbility { ItemAbilityId =1 ,ItemId = 1, AbilityId = 1 });
+
+            modelBuilder.Entity<Class>()
+                .HasData(new Class { Name = "Warrior" });
+
+            modelBuilder.Entity<Class>()
+                .HasData(new Class { Name = "Sage" });
+
+            modelBuilder.Entity<Class>()
+                .HasData(new Class { Name = "Thief" });
         }
     }
 }
