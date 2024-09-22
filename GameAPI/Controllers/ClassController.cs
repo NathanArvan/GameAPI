@@ -12,7 +12,7 @@ namespace GameAPI.Controllers
             _service = service;
         }
 
-        [HttpGet]
+        [HttpGet("classes")]
         public async  Task<List<Class>> GetClasses()
         {
             return await _service.GetClasses();
