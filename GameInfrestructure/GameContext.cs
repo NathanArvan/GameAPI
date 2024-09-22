@@ -101,13 +101,13 @@ namespace GameInfrestructure
                 .HasData(new ItemAbility { ItemAbilityId =1 ,ItemId = 1, AbilityId = 1 });
 
             modelBuilder.Entity<Class>()
-                .HasData(new Class { Name = "Warrior" });
+                .HasData(new Class { Name = "Warrior", ClassId = 1 });
 
             modelBuilder.Entity<Class>()
-                .HasData(new Class { Name = "Sage" });
+                .HasData(new Class { Name = "Sage", ClassId = 2 });
 
             modelBuilder.Entity<Class>()
-                .HasData(new Class { Name = "Thief" });
+                .HasData(new Class { Name = "Thief", ClassId = 3 });
         }
     }
 }
