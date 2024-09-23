@@ -56,7 +56,14 @@ app.UseSwaggerUI(options =>
 
 app.MapControllers();
 app.UseCors(MyAllowSpecificOrigins);
+var webSocketOptions = new WebSocketOptions
+{
+    KeepAliveInterval = TimeSpan.FromMinutes(2)
+};
 
+webSocketOptions.AllowedOrigins.Add("https://localhost:4200");
+
+app.UseWebSockets(webSocketOptions);
 app.Run();
 
 
