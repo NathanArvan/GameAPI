@@ -48,7 +48,7 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 app.UseHttpLogging();
-app.MapHub("/Combat");
+app.MapHub<CombatHub>("/Combat");
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
