@@ -20,6 +20,7 @@ builder.Services.AddHttpLogging(o => { });
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSignalR();
 builder.Services.AddScoped<CharacterService>();
 builder.Services.AddScoped<ICharacterRepository, CharacterRepository>();
 builder.Services.AddScoped<MapService>();
@@ -47,6 +48,7 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 app.UseHttpLogging();
+app.MapHub("/Combat");
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
@@ -56,14 +58,7 @@ app.UseSwaggerUI(options =>
 
 app.MapControllers();
 app.UseCors(MyAllowSpecificOrigins);
-var webSocketOptions = new WebSocketOptions
-{
-    KeepAliveInterval = TimeSpan.FromMinutes(2)
-};
 
-webSocketOptions.AllowedOrigins.Add("https://localhost:4200");
-
-app.UseWebSockets(webSocketOptions);
 app.Run();
 
 
