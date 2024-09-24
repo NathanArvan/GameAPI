@@ -21,6 +21,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSignalR();
+builder.Services.AddMemoryCache();
 builder.Services.AddScoped<CharacterService>();
 builder.Services.AddScoped<ICharacterRepository, CharacterRepository>();
 builder.Services.AddScoped<MapService>();
@@ -42,13 +43,12 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins, policy =>
     {
-        policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+        policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
     });
 });
 var app = builder.Build();
 
 app.UseHttpLogging();
-app.MapHub<CombatHub>("/Combat");
 app.UseSwagger();
 app.UseSwaggerUI(options =>
 {
@@ -59,6 +59,7 @@ app.UseSwaggerUI(options =>
 app.MapControllers();
 app.UseCors(MyAllowSpecificOrigins);
 
+app.MapHub<CombatHub>("/combat");
 app.Run();
 
 
