@@ -25,16 +25,16 @@ namespace GameDomain.Battles
                 currentUsers.Add(newUser);
             }
             var serializedUsers = JsonSerializer.Serialize(currentUsers);
-            SetBattleUsers(battleId, serializedUsers);
+            SetBattleUsers(battleId, currentUsers);
             await Clients.All.SendAsync("UserJoinedBattle", serializedUsers);
         }
 
-        private void SetBattleUsers(int battleId, string users)
+        private void SetBattleUsers(int battleId, List<User> users)
         {
              _memoryCache.Set(battleId, users);
         }
         
-        private List<User> GetUsersForBattle(int battleId)
+        public List<User> GetUsersForBattle(int battleId)
         {
             List<User> users;
             if (!_memoryCache.TryGetValue(battleId, out users)) { 
