@@ -1,7 +1,8 @@
 ﻿using GameDomain.Users;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Caching.Memory;
-using System.Text.Json;
+using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace GameDomain.Battles
 {
@@ -16,15 +17,18 @@ namespace GameDomain.Battles
         public async Task SendMessage(string user, string message)
             => await Clients.All.SendAsync("ReceiveMessage", user, message);
 
-        public async Task UserJoinedBattle(int battleId, string user)
+        public async Task UserJoinedBattle(string payload)
         {
-            var newUser = JsonSerializer.Deserialize<User>(user); 
+            var parsedPayload = Regex.Unescape(payload);
+            UserJoinedDTO? dto = JsonConvert.DeserializeObject<UserJoinedDTO>(parsedPayload);
+            var battleId = dto.battleId;
+            var newUser = dto.user;
             var currentUsers = GetUsersForBattle(battleId); 
             if (newUser != null)
             {
                 currentUsers.Add(newUser);
             }
-            var serializedUsers = JsonSerializer.Serialize(currentUsers);
+            var serializedUsers = JsonConvert.SerializeObject(currentUsers); //JsonSerializer.Serialize(currentUsers);
             SetBattleUsers(battleId, currentUsers);
             await Clients.All.SendAsync("UserJoinedBattle", serializedUsers);
         }

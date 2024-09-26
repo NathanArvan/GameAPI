@@ -27,7 +27,7 @@ namespace UnitTests
             var testUser = new User() { Name = "test" };
             var userString = JsonSerializer.Serialize(testUser);
 
-            await hub.UserJoinedBattle(1, userString);
+            await hub.UserJoinedBattle("test");
             mockCaller.Verify(clients => clients.All, Times.Once);
         }
 
@@ -48,7 +48,7 @@ namespace UnitTests
             var testUser = new User() { Name = "test" };
             var userString = JsonSerializer.Serialize(testUser);
 
-            await hub.UserJoinedBattle(1, userString);
+            await hub.UserJoinedBattle("test");
 
             var currentUsers = hub.GetUsersForBattle(1);
 
