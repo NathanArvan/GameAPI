@@ -14,13 +14,14 @@ namespace GameInfrestructure.Repositories
 
         public async Task<List<Character>> Query(CharacterQueryParameters parameters)
         {
-            if (parameters.characterIds.Length == 0 && parameters.battleIds.Length == 0)
+            if (parameters.characterIds.Length == 0 && parameters.battleIds.Length == 0 && parameters.userIds.Length == 0)
             {
                 return await _context.Characters.ToListAsync();
             }
             return await _context.Characters
                 .Where(c => parameters.characterIds.Contains(c.CharacterId) ||
-                         parameters.battleIds.Contains((int)c.BattleId))
+                         parameters.battleIds.Contains((int)c.BattleId) || 
+                         parameters.userIds.Contains((int)c.UserId))
                 .ToListAsync();
         }
 
