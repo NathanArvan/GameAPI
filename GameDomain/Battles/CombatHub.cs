@@ -28,7 +28,7 @@ namespace GameDomain.Battles
             {
                 currentUsers.Add(newUser);
             }
-            var serializedUsers = JsonConvert.SerializeObject(currentUsers); //JsonSerializer.Serialize(currentUsers);
+            var serializedUsers = JsonConvert.SerializeObject(currentUsers); 
             SetBattleUsers(battleId, currentUsers);
             await Clients.All.SendAsync("UserJoinedBattle", serializedUsers);
         }
