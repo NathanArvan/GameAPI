@@ -10,10 +10,10 @@ namespace GameAPI.Controllers
 
         public UserController(UserService service) { _service = service; }
 
-        [HttpGet("users/{id}")]
-        public async Task<User> GetAbilities(int id)
+        [HttpGet("users")]
+        public async Task<User> GetUsers([FromQuery] UserSearchParameters parameters)
         {
-            var result = await _service.GetUsers(new UserSearchParameters() { });
+            var result = await _service.GetUsers(parameters);
             return result.FirstOrDefault();
         }
 

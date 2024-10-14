@@ -31,7 +31,10 @@ namespace GameInfrestructure.Repositories
                 return await _context.Users.ToListAsync();
             }
             return await _context.Users
-                .Where(u => parameters.emails.Contains(u.Email))
+                .Where(
+                    u => parameters.emails.Contains(u.Email) ||
+                     parameters.userIds.Contains((int)u.UserId)
+                )
                 .ToListAsync();
         }
     }
