@@ -1,4 +1,5 @@
-﻿using GameDomain.Users;
+﻿using GameDomain.Characters;
+using GameDomain.Users;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
@@ -35,19 +36,42 @@ namespace GameDomain.Battles
 
         private void SetBattleUsers(int battleId, List<User> users)
         {
-             _memoryCache.Set(battleId, users);
+             _memoryCache.Set($"battle-${battleId}-users", users);
         }
         
         public List<User> GetUsersForBattle(int battleId)
         {
             List<User> users;
-            if (!_memoryCache.TryGetValue(battleId, out users)) { 
+            if (!_memoryCache.TryGetValue($"battle-${battleId}-users", out users)) { 
                 users = new List<User>();
                 var cacheEntryOptions = new MemoryCacheEntryOptions()
                         .SetSlidingExpiration(TimeSpan.FromDays(1));
-                _memoryCache.Set(battleId, users);
+                _memoryCache.Set($"battle-${battleId}-users", users);
             }
             return users;
+        }
+
+        public async Task CharacterJoinedBattle(string payload)
+        {
+
+        }
+
+        private void SetBattleCharacters(int battleId, List<CharacterClass> characters)
+        {
+            _memoryCache.Set($"battle-${battleId}-characters", characters);
+        }
+
+        public List<Character> GetCharactersForBattle(int battleId)
+        {
+            List<Character> characters;
+            if (!_memoryCache.TryGetValue($"battle-${battleId}-characters", out characters))
+            {
+                characters = new List<Character>();
+                var cacheEntryOptions = new MemoryCacheEntryOptions()
+                        .SetSlidingExpiration(TimeSpan.FromDays(1));
+                _memoryCache.Set($"battle-${battleId}-characters", characters);
+            }
+            return characters;
         }
     }
 }
