@@ -15,8 +15,6 @@ namespace GameDomain.Battles
         {
             _memoryCache = memoryCache;
         }
-        public async Task SendMessage(string user, string message)
-            => await Clients.All.SendAsync("ReceiveMessage", user, message);
 
         public async Task UserJoinedBattle(string payload)
         {
@@ -53,10 +51,21 @@ namespace GameDomain.Battles
 
         public async Task CharacterJoinedBattle(string payload)
         {
-
+            var parsedPayload = Regex.Unescape(payload);
+            CharacterMessageDTO? dto = JsonConvert.DeserializeObject<CharacterMessageDTO>(parsedPayload);
+            var battleId = dto.battleId;
+            var newCharacter = dto.Character;
+            var currentCharacters = GetCharactersForBattle(battleId);
+            if (newCharacter != null)
+            {
+                currentCharacters.Add(newCharacter);
+            }
+            var serializedUsers = JsonConvert.SerializeObject(currentCharacters);
+            SetBattleCharacters(battleId, currentCharacters);
+            await Clients.All.SendAsync("CharacterJoinedBattle", serializedUsers);
         }
 
-        private void SetBattleCharacters(int battleId, List<CharacterClass> characters)
+        private void SetBattleCharacters(int battleId, List<Character> characters)
         {
             _memoryCache.Set($"battle-${battleId}-characters", characters);
         }
@@ -72,6 +81,21 @@ namespace GameDomain.Battles
                 _memoryCache.Set($"battle-${battleId}-characters", characters);
             }
             return characters;
+        }
+
+        public async Task CharacterUpdated(string payload)
+        {
+            var parsedPayload = Regex.Unescape(payload);
+            CharacterMessageDTO? dto = JsonConvert.DeserializeObject<CharacterMessageDTO>(parsedPayload);
+            var battleId = dto.battleId;
+            var currentCharacters = GetCharactersForBattle(battleId);
+            var characterIndex = currentCharacters.FindIndex(c => c.CharacterId == dto.Character.CharacterId);
+            if (characterIndex != null) {
+                currentCharacters[characterIndex] = dto.Character;
+                var serializedCharacters = JsonConvert.SerializeObject(currentCharacters);
+                SetBattleCharacters(battleId, currentCharacters);
+                await Clients.All.SendAsync("CharacterUpdated", serializedCharacters);
+            }
         }
     }
 }
